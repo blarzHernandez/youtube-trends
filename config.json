@@ -1,5 +1,5 @@
 {
-  "title": "Youtube Trends",
+  "title": "Youtube Trends Blarz",
   "youtubeApi": {
     "endpoint": "https://www.googleapis.com/youtube/v3/videos",
     "key": "AIzaSyBROYmpAX0AcpUgCrkBalg_1UVxiiHJ5dc"

@@ -11,13 +11,13 @@ export class YoutubeService {
     var params = {
       part: 'snippet',
       chart: 'mostPopular',
-      regionCode: 'US', // should be replaced with country code from countryList
+      regionCode: "US", // should be replaced with country code from countryList
       maxResults: '24',
       key: config.youtubeApi.key
     };
 
     var result = [];
-
+    var counts = [];
     return axios.get('/', {params}).then(function(res){
       result = res.data.items;
       for (var i = 0; i < result.length; i++) {
@@ -27,7 +27,12 @@ export class YoutubeService {
           thumbnail: result[i].snippet.thumbnails.high.url,
           publishedAt: moment(result[i].snippet.publishedAt).fromNow()
         };
-        result[i] = YoutubeService.getVideoDetails(result[i]);
+        
+        
+        result[i]= YoutubeService.getVideoDetails(result[i]);
+       
+       
+        
       }
 
       return result;
@@ -35,7 +40,7 @@ export class YoutubeService {
 
   }
 
-  static getVideoDetails(video) {
+ static getVideoDetails(video) {
     var params = {
       part: 'statistics',
       id: video.id,
@@ -43,10 +48,9 @@ export class YoutubeService {
     };
 
     return axios.get('/', {params}).then(function(res) {
-      var result = res.data;
-      console.log(res.data);
-      video.viewCount = result['items'][0].statistics.viewCount;
-      video.likeCount = result['items'][0].statistics.likeCount;
+      var result1 = res.data;
+      video.viewCount = result1['items'][0].statistics.viewCount;
+      video.likeCount = result1['items'][0].statistics.likeCount;
 
       return video;
     });
