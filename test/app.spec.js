@@ -25,4 +25,17 @@ describe('Server', function() {
         done();
       });
   });
+
+  it("Should open trends by country /youtube/?regionCode", (done) => {
+     let regionCode = "AR";
+     chai.request(server)
+         .get("/youtube/?regionCode=" + regionCode)
+         .end( (err,res)=> {
+          res.should.have.status(200);          
+          done();
+         })
+
+  });
+
+
 });

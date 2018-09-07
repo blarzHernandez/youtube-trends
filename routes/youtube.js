@@ -26,11 +26,12 @@ router.get('/', async (req, res) => {
   });
 });
 
-router.get('/:videoId', async (req, res) => {
+router.get('/video/:videoId', async (req, res) => {
   res.render('youtube/player', {
     title: config.title,
     countries : contries
   });
 });
+
 
 module.exports = router;
