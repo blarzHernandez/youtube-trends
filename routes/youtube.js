@@ -10,8 +10,14 @@ const contries = country.getCountries();
 
 /* GET home page. */
 router.get('/', async (req, res) => {
-  const promis = await service.getTrendingVideos();
-  //We need to loop trouth all promises
+  let regionCode = req.query.regionCode;//Get region code via query string
+  if(regionCode == ''){
+    regionCode = 'US'//by default show US trendings
+  }else{
+    regionCode = regionCode;
+  }
+  const promis = await service.getTrendingVideos(regionCode);
+  //We need to loop trough all promises
   const trends = await Promise.all(promis);
   res.render('youtube/index', {
     title: config.title,
@@ -24,13 +30,6 @@ router.get('/:videoId', async (req, res) => {
   res.render('youtube/player', {
     title: config.title,
     countries : contries
-  });
-});
-
-
-router.get('/:countryId', async (req, res) =>{
- res.render('youtube/player', {
-    title: config.title
   });
 });
 

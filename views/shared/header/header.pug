@@ -4,8 +4,8 @@ div(id='page-header')
       img(class='logo', src='/images/logo.svg')
 
     div(class='col-md-6 hidden-md-down note')
-      div(class = 'dropdown')
+    div(class = 'dropdown')
         button( class='dropdown-button') Select Country 
         div( class ='dropdown-content')
             each country in countries
-              a( href='' ) #{country.name}
+              a( href='/youtube/?regionCode=' + country.code ) #{country.name}
